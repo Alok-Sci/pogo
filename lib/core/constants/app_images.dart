@@ -3,6 +3,7 @@ abstract class AppImages {
 
   static const String _base = 'assets/images';
 
+  static const String loader = '$_base/loader.png';
   static const String avatar = '$_base/avatar.png';
   static const String connectWithCoach = '$_base/connect_with_coach.png';
   static const String dietPlan = '$_base/diet_plan.png';
