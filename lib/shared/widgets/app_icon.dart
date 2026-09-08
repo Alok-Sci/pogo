@@ -5,7 +5,7 @@ class AppIcon extends StatelessWidget {
   const AppIcon(
     this.assetPath, {
     this.size,
-    this.blendMode = BlendMode.srcIn,
+    this.blendMode = BlendMode.src,
     super.key,
   });
 
