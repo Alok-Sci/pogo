@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:pogo/core/theme/app_theme.dart';
 
 class PogoApp extends StatelessWidget {
   const PogoApp({super.key});
@@ -8,10 +9,7 @@ class PogoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Pogo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: AppTheme.light,
       home: const Text('Pogo'),
     );
   }
