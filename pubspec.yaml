@@ -66,6 +66,8 @@ flutter:
 
   assets:
     - assets/fonts/Mona_Sans/
+    - assets/icons/
+    - assets/images/
 
   fonts:
     - family: MonaSans
