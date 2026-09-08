@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+
+class Palette {
+  static const white = Color(0xffffffff);
+  static const warmOffWhite = Color(0xffF7F6F2); // background
+  static const lightStoneGrey = Color(0xffe6e8e4); // status chip
+  static const lightGrey = Color(0xffEFEFEF); // empty rating star
+  static const mutedGold = Color(0xffB7A96F);
+  static const lighYellow = Color(0xffFFF7CB);
+
+  static const dark = Color(0xff121212);
+  static const charcoalGrey = Color(0xff2e2e2e);
+  static const subtitleCharcoalGrey = Color.fromRGBO(46, 46, 46, .6);
+
+  static const iphoneColor = Color(0xff7d62a6);
+  static const forText = charcoalGrey;
+
+  static const green = Color(0xff81c21e);
+  static const ratingStar = Color(0xffFF6D44); // rating star
+
+  static const darkMedium = Color(0xff121212);
+  static const darkLight = Color(0xff1f1f1f);
+  static const black = Color(0xff000000);
+
+  static const headerGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [Color(0xff6E8F7B), Color(0x006E8F7B)],
+    stops: [0.0, 0.8],
+  );
+}
