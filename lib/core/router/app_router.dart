@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pogo/core/router/app_routes.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pogo/features/splash/view/splash_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_router.g.dart';
@@ -9,11 +10,11 @@ part 'app_router.g.dart';
 @riverpod
 GoRouter appRouter(Ref ref) {
   return GoRouter(
-    initialLocation: AppRoutes.home,
+    initialLocation: AppRoutes.splash,
     routes: [
       GoRoute(
         path: AppRoutes.splash,
-        builder: (_, __) => const _Placeholder("splash"),
+        builder: (_, __) => const SplashScreen(),
       ),
       GoRoute(
         path: AppRoutes.onboarding,

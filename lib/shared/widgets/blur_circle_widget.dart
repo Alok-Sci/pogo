@@ -13,7 +13,7 @@ class BlurCircleWidget extends StatelessWidget {
       imageFilter: ImageFilter.blur(sigmaX: 280, sigmaY: 280),
       child: CircleAvatar(
         radius: radius,
-        backgroundColor: Palette.white.withAlpha(127),
+        backgroundColor: Palette.white.withAlpha(80),
       ),
     );
   }
