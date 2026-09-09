@@ -28,4 +28,11 @@ class Palette {
     colors: [Color(0xff6E8F7B), Color(0x006E8F7B)],
     stops: [0.0, 0.8],
   );
+
+  static const onboardingGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [Color(0xffffffff), Color(0x00ffffff)],
+    stops: [0.0, 1.0],
+  );
 }
