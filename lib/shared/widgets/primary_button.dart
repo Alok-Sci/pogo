@@ -24,6 +24,15 @@ class PrimaryButton extends StatelessWidget {
   final Color? foregroundColor;
   final VoidCallback onPressed;
 
+  factory PrimaryButton.dark(String text, {required VoidCallback onPressed}) {
+    return PrimaryButton(
+      text,
+      backgroundColor: Palette.black,
+      onPressed: onPressed,
+      padding: const EdgeInsets.all(AppSpacing.xl),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextButton(
