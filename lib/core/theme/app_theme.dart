@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pogo/core/constants/app_radii.dart';
 import 'package:pogo/core/theme/app_colors_extension.dart';
 import 'package:pogo/core/theme/app_palette.dart';
+import 'package:pogo/core/theme/app_spacing.dart';
 import 'package:pogo/core/theme/app_text_styles.dart';
+import 'package:pogo/core/utils/double_extensions.dart';
 
 abstract class AppTheme {
   const AppTheme._();
@@ -50,6 +53,55 @@ abstract class AppTheme {
           color: Palette.lightGrey,
           thickness: 1,
         ),
+
+        // text button
+        textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+          backgroundColor: Palette.green,
+          foregroundColor: Palette.warmOffWhite,
+          elevation: 0,
+          padding: const EdgeInsets.all(AppSpacing.xl),
+          textStyle: AppTextStyles.titleMedium,
+          shape: RoundedRectangleBorder(
+            borderRadius: AppRadii.full.circular,
+          ),
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        )),
+
+        // input decoration
+        inputDecorationTheme: InputDecorationTheme(
+          fillColor: Palette.white,
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: AppSpacing.xxl,
+            vertical: AppSpacing.xl,
+          ),
+          hintStyle: AppTextStyles.bodyLight14.copyWith(
+            color: Palette.charcoalGrey.withValues(alpha: 0.25),
+          ),
+          prefixStyle: AppTextStyles.bodyLight14,
+          border: OutlineInputBorder(
+            borderRadius: AppRadii.full.circular,
+            borderSide: BorderSide.none,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: AppRadii.full.circular,
+            borderSide: BorderSide.none,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: AppRadii.full.circular,
+            borderSide: const BorderSide(color: Palette.black, width: 1.5),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: AppRadii.full.circular,
+            borderSide: const BorderSide(color: Colors.red, width: 1.5),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: AppRadii.full.circular,
+            borderSide: const BorderSide(color: Colors.red, width: 1.5),
+          ),
+          filled: true,
+        ),
+
         extensions: const [
           AppColorsExtension.light,
         ],
