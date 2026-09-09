@@ -11,4 +11,5 @@ abstract class AppIcons {
   static const String playCicle = '$_base/play-cricle.svg';
   static const String search = '$_base/search-normal.svg';
   static const String star = '$_base/star.svg';
+  static const String wavesAbstract = '$_base/waves-abstract.svg';
 }
