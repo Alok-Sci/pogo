@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pogo/core/router/app_routes.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pogo/features/auth/view/login_screen.dart';
 import 'package:pogo/features/onboarding/view/onboarding_screen.dart';
 import 'package:pogo/features/splash/view/splash_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -52,7 +53,7 @@ GoRouter appRouter(Ref ref) {
       ),
       GoRoute(
         path: AppRoutes.login,
-        builder: (_, __) => const _Placeholder("login"),
+        builder: (_, __) => const LoginScreen(),
       ),
       GoRoute(
         path: AppRoutes.search,

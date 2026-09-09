@@ -100,7 +100,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       Expanded(
                         child: SwipeToContinueButton(
                           onSwipeComplete: () {
-                            context.go(AppRoutes.home);
+                            context.go(AppRoutes.login);
                           },
                         ),
                       ),
