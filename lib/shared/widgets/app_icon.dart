@@ -5,12 +5,14 @@ class AppIcon extends StatelessWidget {
   const AppIcon(
     this.assetPath, {
     this.size,
-    this.blendMode = BlendMode.src,
+    this.color,
+    this.blendMode = BlendMode.srcIn,
     super.key,
   });
 
   final String assetPath;
   final double? size;
+  final Color? color;
   final BlendMode blendMode;
 
   @override
@@ -22,6 +24,7 @@ class AppIcon extends StatelessWidget {
         assetPath,
         width: defaultSize,
         height: defaultSize,
+        colorFilter: color != null ? ColorFilter.mode(color!, blendMode) : null,
         placeholderBuilder: (context) => SizedBox(
           height: defaultSize,
           width: defaultSize,
