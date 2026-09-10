@@ -12,4 +12,10 @@ abstract class AppIcons {
   static const String search = '$_base/search-normal.svg';
   static const String star = '$_base/star.svg';
   static const String wavesAbstract = '$_base/waves-abstract.svg';
+  static const String home = '$_base/home.svg';
+  static const String plans = '$_base/plans.svg';
+  static const String articles = '$_base/articles.svg';
+  static const String coaches = '$_base/coaches.svg';
+  static const String callChat = '$_base/call_chat.svg';
+
 }
