@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pogo/features/auth/view/login_screen.dart';
 import 'package:pogo/features/home/view/home_page.dart';
 import 'package:pogo/features/onboarding/view/onboarding_screen.dart';
+import 'package:pogo/features/shell/view/pogo_shell.dart';
 import 'package:pogo/features/splash/view/splash_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -23,25 +24,35 @@ GoRouter appRouter(Ref ref) {
         path: AppRoutes.onboarding,
         builder: (_, __) => const OnboardingScreen(),
       ),
-      ShellRoute(
-        builder: (context, state, child) => _PlaceholderShell(child: child),
-        routes: [
-          GoRoute(
-            path: AppRoutes.home,
-            builder: (_, __) => const HomePage(),
-          ),
-          GoRoute(
-            path: AppRoutes.home,
-            builder: (_, __) => const _Placeholder("Page 2"),
-          ),
-          GoRoute(
-            path: AppRoutes.home,
-            builder: (_, __) => const _Placeholder("Page 3"),
-          ),
-          GoRoute(
-            path: AppRoutes.home,
-            builder: (_, __) => const _Placeholder("Page 4"),
-          ),
+
+      // app shell route
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, child) => PogoShell(navigationShell: child),
+        branches: [
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: AppRoutes.home,
+              builder: (_, __) => const HomePage(),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: AppRoutes.page2,
+              builder: (_, __) => const _Placeholder("Page 2"),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: AppRoutes.page3,
+              builder: (_, __) => const _Placeholder("Page 3"),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: AppRoutes.page4,
+              builder: (_, __) => const _Placeholder("Page 4"),
+            ),
+          ]),
         ],
       ),
       GoRoute(
@@ -72,39 +83,5 @@ class _Placeholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: Center(child: Text(title)));
-  }
-}
-
-class _PlaceholderShell extends StatelessWidget {
-  final Widget child;
-
-  const _PlaceholderShell({required this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    final String currentRoute = GoRouterState.of(context).uri.path;
-
-    return Scaffold(
-      body: child,
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _calculateSelectedIndex(currentRoute),
-        destinations: const [
-          NavigationDestination(icon: Icon(Icons.home), label: "Home"),
-          NavigationDestination(icon: Icon(Icons.group), label: "Page 2"),
-          NavigationDestination(icon: Icon(Icons.paste), label: "Page 3"),
-          NavigationDestination(icon: Icon(Icons.newspaper), label: "Page 4"),
-        ],
-      ),
-    );
-  }
-
-  int _calculateSelectedIndex(String path) {
-    return switch (path) {
-      _ when path.startsWith(AppRoutes.home) => 0,
-      _ when path.startsWith(AppRoutes.page2) => 1,
-      _ when path.startsWith(AppRoutes.page3) => 2,
-      _ when path.startsWith(AppRoutes.page4) => 3,
-      _ => 0,
-    };
   }
 }
