@@ -49,39 +49,52 @@ class CoachDetailScreen extends StatelessWidget {
   }
 }
 
-class _HireACoachSection extends StatelessWidget {
+class _HireACoachSection extends ConsumerWidget {
   const _HireACoachSection();
 
   @override
-  Widget build(BuildContext context) {
-    return PogoCard(
-        child: Column(
-      children: [
-        PageSectionHeader(
-          title: "Hire a Coach",
-          padding: EdgeInsets.zero,
-        ),
-        AppSpacing.sm.vGap,
-        BodyText(
-            "Connect with a professional coach based on your needs—whether you need quick guidance right now or ongoing support over time."),
-        AppSpacing.xxl.vGap,
-        PogoCheckBoxTile(
-          title: "Instant Consultation",
-          subtitle:
-              "Quick one-to-one guidance for immediate questions or urgent needs.",
-          onChanged: (isChecked) {},
-          isChecked: true,
-        ),
-        AppSpacing.xxl.vGap,
-        PogoCheckBoxTile(
-          title: "Long-term Consultation",
-          subtitle:
-              "Ongoing coaching with regular sessions for sustained growth and support.",
-          onChanged: (isChecked) {},
-          isChecked: false,
-        ),
-      ],
-    ));
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedService = ref.watch(
+      hireCoachViewmodelProvider.select((s) => s.selectedService),
+    );
+    final notifier = ref.read(hireCoachViewmodelProvider.notifier);
+
+    return StatefulBuilder(
+      builder: (context, setState) {
+        return PogoCard(
+            child: Column(
+          children: [
+            PageSectionHeader(
+              title: "Hire a Coach",
+              padding: EdgeInsets.zero,
+            ),
+            AppSpacing.sm.vGap,
+            BodyText(
+                "Connect with a professional coach based on your needs—whether you need quick guidance right now or ongoing support over time."),
+            AppSpacing.xxl.vGap,
+            PogoCheckBoxTile(
+              title: "Instant Consultation",
+              subtitle:
+                  "Quick one-to-one guidance for immediate questions or urgent needs.",
+              onChanged: (_) {
+                notifier.selectService(CoachService.instantConsulation);
+              },
+              isChecked: selectedService == CoachService.instantConsulation,
+            ),
+            AppSpacing.xxl.vGap,
+            PogoCheckBoxTile(
+              title: "Long-term Consultation",
+              subtitle:
+                  "Ongoing coaching with regular sessions for sustained growth and support.",
+              onChanged: (_) {
+                notifier.selectService(CoachService.longTermConsulation);
+              },
+              isChecked: selectedService == CoachService.longTermConsulation,
+            ),
+          ],
+        ));
+      },
+    );
   }
 }
 
