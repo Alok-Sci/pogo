@@ -10,10 +10,12 @@ class PageSectionHeader extends StatelessWidget {
     required this.title,
     this.buttonText,
     this.onButtonPressed,
+    this.padding,
     super.key,
   });
 
   final String title;
+  final EdgeInsets? padding;
   final String? buttonText;
   final VoidCallback? onButtonPressed;
 
@@ -22,7 +24,7 @@ class PageSectionHeader extends StatelessWidget {
     final hasButton = buttonText != null && onButtonPressed != null;
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: AppSpacing.xxl),
+      padding: padding ?? EdgeInsets.symmetric(horizontal: AppSpacing.xxl),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
