@@ -1,6 +1,6 @@
-import 'package:pogo/features/home/data/model/coach_model.dart';
+import 'package:pogo/features/coach/data/model/coach_model.dart';
 import 'package:pogo/features/home/data/model/special_population_coach.dart';
-import 'package:pogo/features/home/data/repository/coach_repository.dart';
+import 'package:pogo/features/coach/data/repository/coach_repository.dart';
 
 class MockCoachRepository implements CoachRepository {
   @override
