@@ -17,6 +17,7 @@ class CircularIconButton extends StatelessWidget {
     this.padding = const EdgeInsets.all(
       AppSpacing.md,
     ),
+    this.gradient,
     super.key,
   }) : assert(
           iconType == CircularIconType.icon
@@ -35,11 +36,13 @@ class CircularIconButton extends StatelessWidget {
   final double? iconSize;
   final EdgeInsets padding;
   final CircularIconType iconType;
+  final Gradient? gradient;
 
   @override
   Widget build(BuildContext context) {
-    final Color defaultBackgroundColor =
-        backgroundColor ?? Palette.white.withValues(alpha: 0.14);
+    final Color? defaultBackgroundColor = gradient != null
+        ? null
+        : backgroundColor ?? Palette.white.withValues(alpha: 0.14);
     final Color defaultForegroundColor =
         foregroundColor ?? Palette.white.withValues(alpha: 0.3);
 
@@ -61,6 +64,7 @@ class CircularIconButton extends StatelessWidget {
             color: defaultForegroundColor,
           ),
           shape: BoxShape.circle,
+          gradient: gradient,
         ),
         padding: padding,
         child: icon,
