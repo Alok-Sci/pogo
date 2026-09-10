@@ -11,6 +11,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
     required this.innerShadow,
     required this.dropShadow,
     required this.headerGradient,
+    required this.navbarGradient,
     required this.onboardingGradient,
     required this.overlayGradient,
   });
@@ -23,6 +24,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
   final Color innerShadow;
   final Color dropShadow;
   final Gradient headerGradient;
+  final Gradient navbarGradient;
   final Gradient onboardingGradient;
   final Gradient overlayGradient;
 
@@ -32,9 +34,10 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
     ratingStar: Palette.ratingStar,
     accentGold: Palette.mutedGold,
     highlightYellow: Palette.lighYellow,
-    headerGradient: Palette.headerGradient,
     innerShadow: Palette.innerShadow,
     dropShadow: Palette.dropShadow,
+    headerGradient: Palette.headerGradient,
+    navbarGradient: Palette.navbarGradient,
     onboardingGradient: Palette.onboardingGradient,
     overlayGradient: Palette.overlayGradient,
   );
@@ -49,6 +52,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
     Color? innerShadow,
     Color? dropShadow,
     Gradient? headerGradient,
+    Gradient? navbarGradient,
     Gradient? onboardingGradient,
     Gradient? overlayGradient,
   }) {
@@ -58,9 +62,10 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
       ratingStar: ratingStar ?? this.ratingStar,
       accentGold: accentGold ?? this.accentGold,
       highlightYellow: highlightYellow ?? this.highlightYellow,
-      headerGradient: headerGradient ?? this.headerGradient,
       innerShadow: innerShadow ?? this.innerShadow,
       dropShadow: dropShadow ?? this.dropShadow,
+      headerGradient: headerGradient ?? this.headerGradient,
+      navbarGradient: navbarGradient ?? this.navbarGradient,
       onboardingGradient: onboardingGradient ?? this.onboardingGradient,
       overlayGradient: overlayGradient ?? this.overlayGradient,
     );
@@ -76,9 +81,10 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
       ratingStar: Color.lerp(ratingStar, other.ratingStar, t)!,
       accentGold: Color.lerp(accentGold, other.accentGold, t)!,
       highlightYellow: Color.lerp(highlightYellow, other.highlightYellow, t)!,
-      headerGradient: Gradient.lerp(headerGradient, other.headerGradient, t)!,
       innerShadow: Color.lerp(innerShadow, other.innerShadow, t)!,
       dropShadow: Color.lerp(dropShadow, other.dropShadow, t)!,
+      headerGradient: Gradient.lerp(headerGradient, other.headerGradient, t)!,
+      navbarGradient: Gradient.lerp(navbarGradient, other.navbarGradient, t)!,
       onboardingGradient:
           Gradient.lerp(onboardingGradient, other.onboardingGradient, t)!,
       overlayGradient:

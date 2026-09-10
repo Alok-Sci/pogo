@@ -25,6 +25,13 @@ class Palette {
   static const innerShadow = Color(0x0DEAEAEA);
   static const dropShadow = Color(0x66000000);
 
+  static const navbarGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [Color(0xE0171717), Color(0xEB0D0D0D)],
+    stops: [0.0, 1.0],
+  );
+
   static const headerGradient = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
