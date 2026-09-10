@@ -7,6 +7,8 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
     required this.emptyRatingStar,
     required this.ratingStar,
     required this.accentGold,
+    required this.accentGreen,
+    required this.deepForestGreen,
     required this.highlightYellow,
     required this.innerShadow,
     required this.dropShadow,
@@ -20,6 +22,8 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
   final Color emptyRatingStar;
   final Color ratingStar;
   final Color accentGold;
+  final Color accentGreen;
+  final Color deepForestGreen;
   final Color highlightYellow;
   final Color innerShadow;
   final Color dropShadow;
@@ -33,6 +37,8 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
     emptyRatingStar: Palette.lightStoneGrey,
     ratingStar: Palette.ratingStar,
     accentGold: Palette.mutedGold,
+    accentGreen: Palette.mutedGold,
+    deepForestGreen: Palette.mutedGold,
     highlightYellow: Palette.lighYellow,
     innerShadow: Palette.innerShadow,
     dropShadow: Palette.dropShadow,
@@ -48,6 +54,8 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
     Color? emptyRatingStar,
     Color? ratingStar,
     Color? accentGold,
+    Color? accentGreen,
+    Color? deepForestGreen,
     Color? highlightYellow,
     Color? innerShadow,
     Color? dropShadow,
@@ -61,6 +69,8 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
       emptyRatingStar: emptyRatingStar ?? this.emptyRatingStar,
       ratingStar: ratingStar ?? this.ratingStar,
       accentGold: accentGold ?? this.accentGold,
+      accentGreen: accentGreen ?? this.accentGreen,
+      deepForestGreen: deepForestGreen ?? this.deepForestGreen,
       highlightYellow: highlightYellow ?? this.highlightYellow,
       innerShadow: innerShadow ?? this.innerShadow,
       dropShadow: dropShadow ?? this.dropShadow,
@@ -80,6 +90,8 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
       emptyRatingStar: Color.lerp(emptyRatingStar, other.emptyRatingStar, t)!,
       ratingStar: Color.lerp(ratingStar, other.ratingStar, t)!,
       accentGold: Color.lerp(accentGold, other.accentGold, t)!,
+      accentGreen: Color.lerp(accentGreen, other.accentGreen, t)!,
+      deepForestGreen: Color.lerp(deepForestGreen, other.deepForestGreen, t)!,
       highlightYellow: Color.lerp(highlightYellow, other.highlightYellow, t)!,
       innerShadow: Color.lerp(innerShadow, other.innerShadow, t)!,
       dropShadow: Color.lerp(dropShadow, other.dropShadow, t)!,

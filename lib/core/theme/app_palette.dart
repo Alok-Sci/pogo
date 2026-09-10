@@ -8,6 +8,9 @@ class Palette {
   static const mutedGold = Color(0xffB7A96F);
   static const lighYellow = Color(0xffFFF7CB);
 
+  static const accentGreen = Color(0xff34C759);
+  static const deepForestGreen = Color(0xff1F3D2B);
+
   static const dark = Color(0xff121212);
   static const charcoalGrey = Color(0xff2e2e2e);
   static const subtitleCharcoalGrey = Color.fromRGBO(46, 46, 46, .6);
