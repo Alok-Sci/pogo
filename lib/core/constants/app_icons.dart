@@ -17,5 +17,6 @@ abstract class AppIcons {
   static const String articles = '$_base/articles.svg';
   static const String coaches = '$_base/coaches.svg';
   static const String callChat = '$_base/call_chat.svg';
+  static const String chevronLeft = '$_base/chevron_left.svg';
 
 }
