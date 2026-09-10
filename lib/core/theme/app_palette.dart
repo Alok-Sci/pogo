@@ -22,6 +22,9 @@ class Palette {
   static const darkLight = Color(0xff1f1f1f);
   static const black = Color(0xff000000);
 
+  static const innerShadow = Color(0x0DEAEAEA);
+  static const dropShadow = Color(0x66000000);
+
   static const headerGradient = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
