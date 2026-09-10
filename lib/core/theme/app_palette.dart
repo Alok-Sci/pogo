@@ -35,4 +35,11 @@ class Palette {
     colors: [Color(0xffffffff), Color(0x00ffffff)],
     stops: [0.0, 1.0],
   );
+
+  static const overlayGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [Color(0x002e2e2e), Color(0xff2e2e2e)],
+    stops: [0.0, 1.0],
+  );
 }

@@ -10,6 +10,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
     required this.highlightYellow,
     required this.headerGradient,
     required this.onboardingGradient,
+    required this.overlayGradient,
   });
 
   final Color statusChipBackground;
@@ -19,6 +20,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
   final Color highlightYellow;
   final Gradient headerGradient;
   final Gradient onboardingGradient;
+  final Gradient overlayGradient;
 
   static const light = AppColorsExtension(
     statusChipBackground: Palette.lightStoneGrey,
@@ -28,6 +30,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
     highlightYellow: Palette.lighYellow,
     headerGradient: Palette.headerGradient,
     onboardingGradient: Palette.onboardingGradient,
+    overlayGradient: Palette.overlayGradient,
   );
 
   @override
@@ -39,6 +42,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
     Color? highlightYellow,
     Gradient? headerGradient,
     Gradient? onboardingGradient,
+    Gradient? overlayGradient,
   }) {
     return AppColorsExtension(
       statusChipBackground: statusChipBackground ?? this.statusChipBackground,
@@ -48,6 +52,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
       highlightYellow: highlightYellow ?? this.highlightYellow,
       headerGradient: headerGradient ?? this.headerGradient,
       onboardingGradient: onboardingGradient ?? this.onboardingGradient,
+      overlayGradient: overlayGradient ?? this.overlayGradient,
     );
   }
 
@@ -63,6 +68,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
       highlightYellow: Color.lerp(highlightYellow, other.highlightYellow, t)!,
       headerGradient: Gradient.lerp(headerGradient, other.headerGradient, t)!,
       onboardingGradient: Gradient.lerp(onboardingGradient, other.onboardingGradient, t)!,
+      overlayGradient: Gradient.lerp(overlayGradient, other.overlayGradient, t)!,
     );
   }
 }
