@@ -14,4 +14,5 @@ abstract class AppImages {
   static const String meal = '$_base/meal.png';
   static const String mockupOnboarding = '$_base/mockup_onboarding.png';
   static const String wallet = '$_base/wallet.png';
+  static const String femaleCoach = '$_base/female_coach.jpg';
 }
