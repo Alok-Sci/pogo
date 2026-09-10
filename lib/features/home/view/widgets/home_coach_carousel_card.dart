@@ -19,6 +19,7 @@ class HomeCoachCarouselCard extends StatelessWidget {
     required this.category,
     required this.experience,
     required this.rating,
+    required this.imageUrl,
   });
 
   final bool isFavorite;
@@ -26,6 +27,7 @@ class HomeCoachCarouselCard extends StatelessWidget {
   final String category;
   final String experience;
   final double rating;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class HomeCoachCarouselCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: AppRadii.m.circular,
         image: DecorationImage(
-          image: AssetImage(AppImages.femaleCoach),
+          image: NetworkImage(imageUrl),
           fit: BoxFit.cover,
         ),
       ),
