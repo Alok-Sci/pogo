@@ -20,6 +20,7 @@ class HomeCoachCarouselCard extends StatelessWidget {
     required this.experience,
     required this.rating,
     required this.imageUrl,
+    required this.onTap,
   });
 
   final bool isFavorite;
@@ -28,57 +29,66 @@ class HomeCoachCarouselCard extends StatelessWidget {
   final String experience;
   final double rating;
   final String imageUrl;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 285,
-      decoration: BoxDecoration(
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
         borderRadius: AppRadii.m.circular,
-        image: DecorationImage(
-          image: NetworkImage(imageUrl),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: AppRadii.m.circular,
-          gradient: context.appColors.overlayGradient,
-        ),
-        padding: const EdgeInsets.all(AppSpacing.lg),
-        alignment: Alignment.bottomCenter,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Align(
-              alignment: Alignment.topRight,
-              child: CardOverlayIconButton(
-                AppIcons.heart,
-                onPressed: () {},
-              ),
+        radius: 5,
+        onTap: onTap,
+        child: Container(
+          width: 285,
+          decoration: BoxDecoration(
+            borderRadius: AppRadii.m.circular,
+            image: DecorationImage(
+              image: NetworkImage(imageUrl),
+              fit: BoxFit.cover,
             ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
+          ),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: AppRadii.m.circular,
+              gradient: context.appColors.overlayGradient,
+            ),
+            padding: const EdgeInsets.all(AppSpacing.lg),
+            alignment: Alignment.bottomCenter,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
-                  child: TitleSubtitleGroup(
-                    title: name,
-                    subtitleTextGroup: [category, experience],
-                  ),
-                ),
-                SizedBox(
-                  height: 26,
-                  child: PrimaryButton.icon(
-                    rating.toString(),
-                    icon: AppIcon(AppIcons.star, size: AppSpacing.sm),
-                    iconAlignment: IconAlignment.end,
-                    textStyle: AppTextStyles.bodyMedium14,
+                Align(
+                  alignment: Alignment.topRight,
+                  child: CardOverlayIconButton(
+                    AppIcons.heart,
                     onPressed: () {},
                   ),
-                )
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      child: TitleSubtitleGroup(
+                        title: name,
+                        subtitleTextGroup: [category, experience],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 26,
+                      child: PrimaryButton.icon(
+                        rating.toString(),
+                        icon: AppIcon(AppIcons.star, size: AppSpacing.sm),
+                        iconAlignment: IconAlignment.end,
+                        textStyle: AppTextStyles.bodyMedium14,
+                        onPressed: () {},
+                      ),
+                    )
+                  ],
+                ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );

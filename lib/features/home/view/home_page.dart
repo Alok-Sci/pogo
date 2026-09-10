@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:pogo/core/router/app_routes.dart';
 import 'package:pogo/core/theme/app_palette.dart';
 import 'package:pogo/core/theme/app_spacing.dart';
 import 'package:pogo/core/utils/context_extensions.dart';
@@ -94,13 +96,15 @@ class _TopCoachCarouselSection extends ConsumerWidget {
       data: (coaches) => PogoCarousel(
         items: coaches.map((coach) {
           return HomeCoachCarouselCard(
-            isFavorite: coach.isFavorite,
-            name: coach.name,
-            category: coach.category,
-            experience: coach.experience,
-            rating: coach.rating,
-            imageUrl: coach.imageUrl,
-          );
+              isFavorite: coach.isFavorite,
+              name: coach.name,
+              category: coach.category,
+              experience: coach.experience,
+              rating: coach.rating,
+              imageUrl: coach.imageUrl,
+              onTap: () {
+                context.push("${AppRoutes.coach}/${coach.id}");
+              });
         }).toList(),
       ),
     );

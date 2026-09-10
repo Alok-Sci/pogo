@@ -3,6 +3,7 @@ import 'package:pogo/core/router/app_routes.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pogo/features/auth/view/login_screen.dart';
+import 'package:pogo/features/coach/view/coach_detail_screen.dart';
 import 'package:pogo/features/home/view/home_page.dart';
 import 'package:pogo/features/onboarding/view/onboarding_screen.dart';
 import 'package:pogo/features/shell/view/pogo_shell.dart';
@@ -56,8 +57,12 @@ GoRouter appRouter(Ref ref) {
         ],
       ),
       GoRoute(
-        path: AppRoutes.coachDetail,
-        builder: (_, __) => const _Placeholder("coachDetail"),
+        path: "${AppRoutes.coach}/:id",
+        builder: (_, state) {
+          final id = state.pathParameters['id']!;
+
+          return CoachDetailScreen(id: id);
+        },
       ),
       GoRoute(
         path: AppRoutes.dietChart,

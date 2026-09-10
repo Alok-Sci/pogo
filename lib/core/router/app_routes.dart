@@ -8,7 +8,7 @@ abstract class AppRoutes {
   static const page2 = "/page2";
   static const page3 = "/page3";
   static const page4 = "/page4";
-  static const coachDetail = "/coachDetail/:id";
+  static const coach = "/coach";
   static const dietChart = "/dietChart";
   static const search = "/search";
 }
