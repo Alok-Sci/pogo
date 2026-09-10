@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:pogo/core/constants/app_radii.dart';
 import 'package:pogo/core/theme/app_palette.dart';
@@ -24,39 +23,47 @@ class PogoCheckBoxTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: Palette.lightStoneGrey),
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
         borderRadius: AppRadii.m.circular,
-      ),
-      padding: EdgeInsets.symmetric(
-        horizontal: AppSpacing.lg,
-        vertical: AppSpacing.sm,
-      ),
-      child: Row(
-        spacing: AppSpacing.xxlMd,
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: AppTextStyles.headingSemiBold14,
+        onTap: () {
+          onChanged(!isChecked);
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Palette.lightStoneGrey),
+            borderRadius: AppRadii.m.circular,
+          ),
+          padding: EdgeInsets.symmetric(
+            horizontal: AppSpacing.lg,
+            vertical: AppSpacing.sm,
+          ),
+          child: Row(
+            spacing: AppSpacing.xxlMd,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: AppTextStyles.headingSemiBold14,
+                    ),
+                    AppSpacing.xs2.vGap,
+                    Text(
+                      subtitle,
+                      style: AppTextStyles.bodyMedium12,
+                    )
+                  ],
                 ),
-                AppSpacing.xs2.vGap,
-                Text(
-                  subtitle,
-                  style: AppTextStyles.bodyMedium12,
-                )
-              ],
-            ),
+              ),
+              PogoCheckBox(
+                value: isChecked,
+              ),
+            ],
           ),
-          PogoCheckBox(
-            value: isChecked,
-            onTap: onChanged,
-          ),
-        ],
+        ),
       ),
     );
   }
