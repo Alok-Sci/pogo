@@ -8,7 +8,7 @@ import 'package:pogo/core/theme/app_text_styles.dart';
 import 'package:pogo/core/utils/context_extensions.dart';
 import 'package:pogo/core/utils/double_extensions.dart';
 import 'package:pogo/core/utils/num_extensions.dart';
-import 'package:pogo/features/home/model/home_typedefs.dart';
+import 'package:pogo/features/home/data/model/home_typedefs.dart';
 import 'package:pogo/features/home/view/widgets/home_header_food_button.dart';
 import 'package:pogo/features/home/view/widgets/search_text_field.dart';
 import 'package:pogo/shared/widgets/app_icon.dart';

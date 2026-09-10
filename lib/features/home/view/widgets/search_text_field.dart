@@ -5,7 +5,7 @@ import 'package:pogo/core/theme/app_palette.dart';
 import 'package:pogo/core/theme/app_spacing.dart';
 import 'package:pogo/core/utils/context_extensions.dart';
 import 'package:pogo/core/utils/double_extensions.dart';
-import 'package:pogo/features/home/model/home_typedefs.dart';
+import 'package:pogo/features/home/data/model/home_typedefs.dart';
 import 'package:pogo/shared/widgets/app_icon.dart';
 
 class SearchTextField extends StatelessWidget {
