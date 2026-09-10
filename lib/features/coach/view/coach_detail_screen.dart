@@ -1,47 +1,61 @@
 import 'package:flutter/material.dart';
-import 'package:pogo/core/constants/app_images.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pogo/core/constants/app_icons.dart';
 import 'package:pogo/core/constants/app_radii.dart';
 import 'package:pogo/core/theme/app_palette.dart';
 import 'package:pogo/core/theme/app_spacing.dart';
 import 'package:pogo/core/theme/app_text_styles.dart';
 import 'package:pogo/core/utils/double_extensions.dart';
 import 'package:pogo/core/utils/num_extensions.dart';
+import 'package:pogo/features/coach/data/model/coach_detail_model.dart';
+import 'package:pogo/features/coach/data/model/review_model.dart';
 import 'package:pogo/features/coach/view/widgets/card_with_title_overflow.dart';
 import 'package:pogo/features/coach/view/widgets/coach_status_header.dart';
 import 'package:pogo/features/coach/view/widgets/review_list_tile.dart';
+import 'package:pogo/features/coach/viewmodel/coach_detail_viewmodel.dart';
+import 'package:pogo/features/coach/viewmodel/hire_coach_state.dart';
+import 'package:pogo/features/coach/viewmodel/hire_coach_viewmodel.dart';
+import 'package:pogo/shared/widgets/app_icon.dart';
 import 'package:pogo/shared/widgets/body_text.dart';
+import 'package:pogo/shared/widgets/loader_widget.dart';
 import 'package:pogo/shared/widgets/page_section_header.dart';
 import 'package:pogo/shared/widgets/pogo_app_bar.dart';
 import 'package:pogo/shared/widgets/pogo_card.dart';
 import 'package:pogo/shared/widgets/pogo_checkbox_tile.dart';
 
-class CoachDetailScreen extends StatelessWidget {
+class CoachDetailScreen extends ConsumerWidget {
   const CoachDetailScreen({required this.id, super.key});
 
   final String id;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Palette.warmOffWhite,
-      appBar: PogoAppBar(title: "Coach Details"),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(AppSpacing.xxxl),
-          child: Column(
-            children: [
-              CoachStatusHeader(
-                name: "Coach Name",
-                education: "PhD in Clinical Psychology",
-                status: "Available",
-              ),
-              AppSpacing.xxl.vGap,
-              _CoachOverviewSection(),
-              AppSpacing.xxl.vGap,
-              _ReviewsSection(),
-              AppSpacing.xxl.vGap,
-              _HireACoachSection(),
-            ],
+  Widget build(BuildContext context, WidgetRef ref) {
+    final coachDetailAsync = ref.watch(coachDetailViewmodelProvider(id));
+
+    return coachDetailAsync.when(
+      loading: () => LoaderWidget(),
+      error: (err, _) => Center(child: Text(err.toString())),
+      data: (coach) => Scaffold(
+        backgroundColor: Palette.warmOffWhite,
+        appBar: PogoAppBar(title: "Coach Details"),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(AppSpacing.xxxl),
+            child: Column(
+              children: [
+                CoachStatusHeader(
+                  name: coach.coach.name,
+                  education: coach.education,
+                  status: coach.availabilityStatus,
+                ),
+                AppSpacing.xxl.vGap,
+                _CoachOverviewSection(coach),
+                AppSpacing.xxl.vGap,
+                _ReviewsSection(coach.reviews),
+                AppSpacing.xxl.vGap,
+                _HireACoachSection(),
+              ],
+            ),
           ),
         ),
       ),
@@ -99,7 +113,8 @@ class _HireACoachSection extends ConsumerWidget {
 }
 
 class _CoachOverviewSection extends StatelessWidget {
-  const _CoachOverviewSection();
+  const _CoachOverviewSection(this.coachDetail);
+  final CoachDetailModel coachDetail;
 
   @override
   Widget build(BuildContext context) {
@@ -107,8 +122,8 @@ class _CoachOverviewSection extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: AppRadii.m.circular,
-          child: Image.asset(
-            AppImages.femaleCoach,
+          child: Image.network(
+            coachDetail.coach.imageUrl,
             fit: BoxFit.cover,
             height: 342,
           ),
@@ -125,19 +140,27 @@ class _CoachOverviewSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              _StatItem(title: "Experience", subtitle: "10+ years"),
+              _StatItem(
+                  title: "Experience", subtitle: coachDetail.coach.experience),
               Container(
                 height: 48,
                 color: Palette.white,
                 width: 1,
               ),
-              _StatItem(title: "Ratings", subtitle: "10+ years"),
+              _StatItem(
+                title: "Ratings",
+                subtitleWidget:
+                    _RatingSubtitleStatWidget(rating: coachDetail.coach.rating),
+              ),
               Container(
                 height: 48,
                 color: Palette.white,
                 width: 1,
               ),
-              _StatItem(title: "Reiviews", subtitle: "10+ years")
+              _StatItem(
+                title: "Reviews",
+                subtitle: coachDetail.reviewCount.toShortString,
+              )
             ],
           ),
         ),
@@ -147,11 +170,33 @@ class _CoachOverviewSection extends StatelessWidget {
           content: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              BodyText(
-                  "Service Category: Weight Loss, Weigh gain\n\nLorem Ipsum is simply dummy text of the printing and  typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of  type and scrambled it to make a type specimen book."),
+              BodyText(coachDetail.serviceInformation),
             ],
           ),
         ),
+      ],
+    );
+  }
+}
+
+class _RatingSubtitleStatWidget extends StatelessWidget {
+  const _RatingSubtitleStatWidget({
+    required this.rating,
+  });
+  final double rating;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          rating.toString(),
+          style: AppTextStyles.headingSemiBold16.copyWith(color: Palette.white),
+        ),
+        AppSpacing.xs.hGap,
+        AppIcon(AppIcons.star, color: Palette.green, size: 16),
       ],
     );
   }
@@ -189,47 +234,36 @@ class _StatItem extends StatelessWidget {
 }
 
 class _ReviewsSection extends StatelessWidget {
-  const _ReviewsSection();
+  const _ReviewsSection(this.reviews);
+
+  final List<ReviewModel> reviews;
 
   @override
   Widget build(BuildContext context) {
     return PogoCard(
-        child: Column(
-      children: [
-        PageSectionHeader(
-          title: "Reviews",
-          buttonText: "View All",
-          onButtonPressed: () {},
-          padding: EdgeInsets.zero,
-        ),
-        AppSpacing.xxl.vGap,
+      child: Column(
+        children: [
+          PageSectionHeader(
+            title: "Reviews",
+            buttonText: "View All",
+            onButtonPressed: () {},
+            padding: EdgeInsets.zero,
+          ),
+          AppSpacing.xxl.vGap,
 
-        //review card
-        ReviewListTile(
-          authorName: "Emily Carter",
-          reviewDate: "15th Sept 2024",
-          rating: 4,
-          text:
-              "Lorem Ipsum is simply dummy text of the printing and  typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-        ),
-        AppSpacing.xxl.vGap,
-        ReviewListTile(
-          authorName: "Emily Carter",
-          reviewDate: "15th Sept 2024",
-          rating: 4,
-          text:
-              "Lorem Ipsum is simply dummy text of the printing and  typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-        ),
-        AppSpacing.xxl.vGap,
-        ReviewListTile(
-          authorName: "Emily Carter",
-          reviewDate: "15th Sept 2024",
-          rating: 4,
-          text:
-              "Lorem Ipsum is simply dummy text of the printing and  typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-        ),
-        AppSpacing.xxl.vGap,
-      ],
-    ));
+          //review cards
+          ListView.separated(
+            itemCount: reviews.take(3).length,
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            separatorBuilder: (_, __) => AppSpacing.xxl.vGap,
+            itemBuilder: (context, index) {
+              final review = reviews[index];
+              return ReviewListTile(review);
+            },
+          ),
+        ],
+      ),
+    );
   }
 }
