@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pogo/core/constants/app_icons.dart';
 import 'package:pogo/core/theme/app_palette.dart';
 import 'package:pogo/core/theme/app_text_styles.dart';
@@ -30,7 +30,9 @@ class PogoAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: SizedBox(
             height: 34,
             child: CircularIconButton(
-              onPressed: () {},
+              onPressed: () {
+                context.pop();
+              },
               iconPath: AppIcons.chevronLeft,
               radius: 17,
               backgroundColor: Palette.white,
