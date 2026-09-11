@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pogo/features/auth/view/login_screen.dart';
 import 'package:pogo/features/coach/view/coach_detail_screen.dart';
+import 'package:pogo/features/diet/view/diet_chart_screen.dart';
 import 'package:pogo/features/home/view/home_page.dart';
 import 'package:pogo/features/onboarding/view/onboarding_screen.dart';
 import 'package:pogo/features/shell/view/pogo_shell.dart';
@@ -66,7 +67,7 @@ GoRouter appRouter(Ref ref) {
       ),
       GoRoute(
         path: AppRoutes.dietChart,
-        builder: (_, __) => const _Placeholder("dietChart"),
+        builder: (_, __) => const DietChartScreen(),
       ),
       GoRoute(
         path: AppRoutes.login,

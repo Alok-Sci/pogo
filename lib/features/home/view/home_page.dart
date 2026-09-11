@@ -34,7 +34,9 @@ class HomePage extends StatelessWidget {
           HomeHeader(
             searchController: searchController,
             onSearch: (query) {},
-            onFoodButtonPressed: () {},
+            onFoodButtonPressed: () {
+              context.push(AppRoutes.dietChart);
+            },
             onAddressTap: () {},
             onWalletTap: () {},
             onProfileTap: () {},
