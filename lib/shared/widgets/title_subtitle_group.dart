@@ -1,9 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:pogo/core/theme/app_palette.dart';
 import 'package:pogo/core/theme/app_spacing.dart';
 import 'package:pogo/core/theme/app_text_styles.dart';
 import 'package:pogo/core/utils/context_extensions.dart';
+import 'package:pogo/core/utils/num_extensions.dart';
 
 class TitleSubtitleGroup extends StatelessWidget {
   const TitleSubtitleGroup({
@@ -13,6 +13,8 @@ class TitleSubtitleGroup extends StatelessWidget {
     this.separator,
     this.titleStyle,
     this.subtitleStyle,
+    this.textColor,
+    this.gap,
     super.key,
   });
 
@@ -23,16 +25,21 @@ class TitleSubtitleGroup extends StatelessWidget {
   final List<String>? subtitleTextGroup;
   final TextStyle? titleStyle;
   final TextStyle? subtitleStyle;
+  final Color? textColor;
+  final double? gap;
+  Color get resolvedTitleColor => textColor ?? Palette.warmOffWhite;
+  Color get resolvedSubtitleColor => textColor ?? Palette.lighYellow;
+  double get resolvedGap => gap ?? AppSpacing.xs2;
 
   @override
   Widget build(BuildContext context) {
     final defaultSubtitleStyle = subtitleStyle ??
-        AppTextStyles.bodyMedium12.copyWith(color: Palette.lighYellow);
+        AppTextStyles.bodyMedium12.copyWith(color: resolvedSubtitleColor);
 
     final defualtSeparator = separator ??
         CircleAvatar(
           radius: AppSpacing.xs2,
-          backgroundColor: Palette.lighYellow,
+          backgroundColor: resolvedSubtitleColor,
         );
 
     final subtitleItems =
@@ -45,12 +52,12 @@ class TitleSubtitleGroup extends StatelessWidget {
         Text(
           title,
           style: titleStyle ??
-              context.textTheme.labelLarge
-                  ?.copyWith(color: Palette.warmOffWhite),
+              context.textTheme.labelLarge?.copyWith(color: resolvedTitleColor),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
-        if (subtitleItems.isNotEmpty)
+        if (subtitleItems.isNotEmpty) ...[
+          resolvedGap.vGap,
           Row(
             spacing: AppSpacing.sm,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,14 +67,16 @@ class TitleSubtitleGroup extends StatelessWidget {
                 Flexible(
                   child: Text(
                     subtitleItems[i],
-                    style: defaultSubtitleStyle,
+                    style: defaultSubtitleStyle.copyWith(
+                        color: resolvedSubtitleColor),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],
             ],
-          ),
+          )
+        ],
       ],
     );
   }
