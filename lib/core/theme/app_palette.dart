@@ -41,6 +41,13 @@ class Palette {
     colors: [Color(0xff6E8F7B), Color(0x006E8F7B)],
     stops: [0.0, 0.8],
   );
+  
+  static const headerInvertedGradient = LinearGradient(
+    begin: Alignment.bottomCenter,
+    end: Alignment.topCenter,
+    colors: [Color(0xff6E8F7B), Color(0x006E8F7B)],
+    stops: [0.0, 0.8],
+  );
 
   static const onboardingGradient = LinearGradient(
     begin: Alignment.topCenter,

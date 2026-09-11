@@ -13,6 +13,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
     required this.innerShadow,
     required this.dropShadow,
     required this.headerGradient,
+    required this.headerInvertedGradient,
     required this.navbarGradient,
     required this.onboardingGradient,
     required this.overlayGradient,
@@ -28,6 +29,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
   final Color innerShadow;
   final Color dropShadow;
   final Gradient headerGradient;
+  final Gradient headerInvertedGradient;
   final Gradient navbarGradient;
   final Gradient onboardingGradient;
   final Gradient overlayGradient;
@@ -43,6 +45,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
     innerShadow: Palette.innerShadow,
     dropShadow: Palette.dropShadow,
     headerGradient: Palette.headerGradient,
+    headerInvertedGradient: Palette.headerInvertedGradient,
     navbarGradient: Palette.navbarGradient,
     onboardingGradient: Palette.onboardingGradient,
     overlayGradient: Palette.overlayGradient,
@@ -60,6 +63,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
     Color? innerShadow,
     Color? dropShadow,
     Gradient? headerGradient,
+    Gradient? headerInvertedGradient,
     Gradient? navbarGradient,
     Gradient? onboardingGradient,
     Gradient? overlayGradient,
@@ -75,6 +79,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
       innerShadow: innerShadow ?? this.innerShadow,
       dropShadow: dropShadow ?? this.dropShadow,
       headerGradient: headerGradient ?? this.headerGradient,
+      headerInvertedGradient: headerInvertedGradient ?? this.headerInvertedGradient,
       navbarGradient: navbarGradient ?? this.navbarGradient,
       onboardingGradient: onboardingGradient ?? this.onboardingGradient,
       overlayGradient: overlayGradient ?? this.overlayGradient,
@@ -96,6 +101,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
       innerShadow: Color.lerp(innerShadow, other.innerShadow, t)!,
       dropShadow: Color.lerp(dropShadow, other.dropShadow, t)!,
       headerGradient: Gradient.lerp(headerGradient, other.headerGradient, t)!,
+      headerInvertedGradient: Gradient.lerp(headerInvertedGradient, other.headerInvertedGradient, t)!,
       navbarGradient: Gradient.lerp(navbarGradient, other.navbarGradient, t)!,
       onboardingGradient:
           Gradient.lerp(onboardingGradient, other.onboardingGradient, t)!,
