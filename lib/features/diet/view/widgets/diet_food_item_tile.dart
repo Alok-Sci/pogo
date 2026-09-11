@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:pogo/core/theme/app_palette.dart';
 import 'package:pogo/core/theme/app_spacing.dart';
@@ -37,13 +36,17 @@ class DietFoodItemTile extends StatelessWidget {
           children: [
             PogoCheckBox.dark(value: isChecked),
             AppSpacing.lg.hGap,
-            ClipOval(
-              clipBehavior: Clip.hardEdge,
-              child: Image.network(
-                imageUrl,
-                height: 40,
-                width: 40,
-                fit: BoxFit.cover,
+            SizedBox(
+              height: 40,
+              width: 40,
+              child: ClipOval(
+                clipBehavior: Clip.hardEdge,
+                child: Image.network(
+                  imageUrl,
+                  height: 40,
+                  width: 40,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             AppSpacing.lg.hGap,
