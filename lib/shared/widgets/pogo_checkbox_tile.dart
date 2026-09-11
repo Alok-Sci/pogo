@@ -58,7 +58,7 @@ class PogoCheckBoxTile extends StatelessWidget {
                   ],
                 ),
               ),
-              PogoCheckBox(
+              PogoCheckBox.circle(
                 value: isChecked,
               ),
             ],
