@@ -80,12 +80,10 @@ class PogoBanner extends StatelessWidget {
                   AppSpacing.lgMd.vGap,
                   SizedBox(
                     width: 196,
-                    child: Expanded(
-                      child: Text(
-                        subtitle,
-                        style: AppTextStyles.bodyMedium12
-                            .copyWith(color: foregroundColor),
-                      ),
+                    child: Text(
+                      subtitle,
+                      style: AppTextStyles.bodyMedium12
+                          .copyWith(color: foregroundColor),
                     ),
                   ),
                   AppSpacing.lgMd.vGap,
