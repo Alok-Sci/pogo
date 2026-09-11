@@ -48,7 +48,7 @@ class MockDietRepository implements DietRepository {
           recipeId: 'recipe_vegetable_oats',
         ),
         FoodItemModel(
-          id: "${idPrefix}_a",
+          id: "${idPrefix}_b",
           name: "Dal + roti with salad",
           servingsInfo: "2 pieces + 2 tbsp",
           imageUrl:
