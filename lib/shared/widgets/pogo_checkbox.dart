@@ -6,9 +6,34 @@ import 'package:pogo/core/utils/double_extensions.dart';
 class PogoCheckBox extends StatelessWidget {
   const PogoCheckBox({
     required this.value,
+    this.color = Palette.green,
     super.key,
-  });
+  }) : _shape = const RoundedRectangleBorder();
+
+  const PogoCheckBox._circle({
+    required this.value,
+    required this.color,
+  }) : _shape = null;
+
   final bool value;
+  final Color color;
+  final OutlinedBorder? _shape;
+
+  factory PogoCheckBox.dark({required bool value}) => PogoCheckBox(
+        value: value,
+        color: Palette.charcoalGrey,
+      );
+
+  factory PogoCheckBox.circle({required bool value}) => PogoCheckBox._circle(
+        value: value,
+        color: Palette.green,
+      );
+
+  factory PogoCheckBox.circleDark({required bool value}) =>
+      PogoCheckBox._circle(
+        value: value,
+        color: Palette.charcoalGrey,
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +42,13 @@ class PogoCheckBox extends StatelessWidget {
       width: 24,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: value ? Palette.green : Colors.transparent,
+          color: value ? color : Colors.transparent,
           border: Border.all(
-            color: Palette.green,
+            color: color,
           ),
-          borderRadius: AppRadii.full.circular,
+          borderRadius: _shape is RoundedRectangleBorder
+              ? AppRadii.s.circular
+              : AppRadii.full.circular,
         ),
         child: value
             ? Icon(
@@ -29,7 +56,7 @@ class PogoCheckBox extends StatelessWidget {
                 color: Palette.white,
                 size: 16,
               )
-            : SizedBox.shrink(),
+            : const SizedBox.shrink(),
       ),
     );
   }
