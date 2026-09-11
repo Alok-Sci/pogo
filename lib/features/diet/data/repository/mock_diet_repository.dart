@@ -44,14 +44,15 @@ class MockDietRepository implements DietRepository {
           name: "Vegetable oats",
           servingsInfo: "2 pieces + 2 tbsp",
           imageUrl:
-              "https://unsplash.com/photos/a-bowl-of-food-sitting-on-top-of-a-table-fGtjvdnXC2k",
+              "https://images.unsplash.com/photo-1696950168808-0ccf6ae6882d?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           recipeId: 'recipe_vegetable_oats',
         ),
         FoodItemModel(
           id: "${idPrefix}_a",
           name: "Dal + roti with salad",
           servingsInfo: "2 pieces + 2 tbsp",
-          imageUrl: "https://unsplash.com/photos/cooked-roti-dish-EGNB5qZfscw",
+          imageUrl:
+              "https://images.unsplash.com/photo-1576846806147-8065a16f89b0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           recipeId: 'recipe_vegetable_oats',
         ),
       ];
