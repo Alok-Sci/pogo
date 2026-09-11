@@ -8,7 +8,7 @@ import 'package:pogo/core/theme/app_spacing.dart';
 import 'package:pogo/core/utils/context_extensions.dart';
 import 'package:pogo/core/utils/double_extensions.dart';
 import 'package:pogo/core/utils/num_extensions.dart';
-import 'package:pogo/features/auth/view/widgets/divider_or_widget.dart';
+import 'package:pogo/shared/widgets/divider_or_widget.dart';
 import 'package:pogo/features/auth/view/widgets/social_login_button.dart';
 import 'package:pogo/shared/widgets/app_icon.dart';
 import 'package:pogo/shared/widgets/blur_circle_widget.dart';
