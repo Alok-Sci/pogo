@@ -58,13 +58,13 @@ class MockCoachRepository implements CoachRepository {
       SpecialPopulationCoachModel(
         id: "1",
         title: "Coach Science",
-        description: "",
+        description: "Professional focused on dietary science to improve physical performance and overall health outcomes.",
         imageUrl: "https://randomuser.me/api/portraits/men/6.jpg",
       ),
       SpecialPopulationCoachModel(
         id: "2",
         title: "Coach Management",
-        description: "",
+        description: "Consultant in effective stress reduction strategies, utilizing mindfulness and behavioral therapies.",
         imageUrl: "https://randomuser.me/api/portraits/women/7.jpg",
       ),
     ];
