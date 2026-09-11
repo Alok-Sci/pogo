@@ -12,7 +12,7 @@ class DietFoodItemTile extends StatelessWidget {
   const DietFoodItemTile({
     super.key,
     required this.isChecked,
-    required this.imagePath,
+    required this.imageUrl,
     required this.title,
     required this.subtitle,
     required this.onViewRecipe,
@@ -20,7 +20,7 @@ class DietFoodItemTile extends StatelessWidget {
   });
 
   final bool isChecked;
-  final String imagePath;
+  final String imageUrl;
   final String title;
   final String subtitle;
   final VoidCallback onViewRecipe;
@@ -39,8 +39,8 @@ class DietFoodItemTile extends StatelessWidget {
             AppSpacing.lg.hGap,
             ClipOval(
               clipBehavior: Clip.hardEdge,
-              child: Image.asset(
-                imagePath,
+              child: Image.network(
+                imageUrl,
                 height: 40,
                 width: 40,
                 fit: BoxFit.cover,

@@ -1,19 +1,33 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:pogo/core/constants/app_icons.dart';
-import 'package:pogo/core/constants/app_images.dart';
 import 'package:pogo/core/constants/app_radii.dart';
 import 'package:pogo/core/theme/app_palette.dart';
 import 'package:pogo/core/theme/app_spacing.dart';
 import 'package:pogo/core/theme/app_text_styles.dart';
 import 'package:pogo/core/utils/double_extensions.dart';
+import 'package:pogo/core/utils/num_extensions.dart';
+import 'package:pogo/features/diet/data/model/diet_meal_model.dart';
+import 'package:pogo/features/diet/view/widgets/diet_food_item_tile.dart';
 import 'package:pogo/features/diet/view/widgets/diet_meal.dart';
 import 'package:pogo/shared/widgets/app_icon.dart';
 import 'package:pogo/shared/widgets/divider_or_widget.dart';
 
 class DietChart extends StatelessWidget {
-  const DietChart({super.key, required this.date});
+  const DietChart({
+    super.key,
+    required this.date,
+    required this.dietMeals,
+    required this.checkedFoodItemIds,
+    required this.onFoodItemToggled,
+  });
 
   final String date;
+  final List<DietMealModel> dietMeals;
+  final Set<String> checkedFoodItemIds;
+  final void Function(String) onFoodItemToggled;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,85 +45,45 @@ class DietChart extends StatelessWidget {
                 horizontal: AppSpacing.md,
                 vertical: AppSpacing.lg,
               ),
-              child: Column(
-                spacing: AppSpacing.xxl,
-                children: [
-                  DietMeal(
-                    title: "Breakfast",
-                    meals: [
-                      DietMealData(
-                        isChecked: false,
-                        imagePath: AppImages.meal,
-                        title: "Vegetable oats",
-                        subtitle: "2 pieces + 2 tbsp",
-                      ),
-                      DietMealData(
-                        isChecked: false,
-                        imagePath: AppImages.meal,
-                        title: "Vegetable oats",
-                        subtitle: "2 pieces + 2 tbsp",
-                      ),
+              child: ListView.separated(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                primary: false,
+                separatorBuilder: (_, __) {
+                  return Column(
+                    children: [
+                      AppSpacing.xxl.vGap,
+                      DividerOrWidget.noText(),
+                      AppSpacing.xxl.vGap,
                     ],
-                    onViewRecipe: () {},
-                  ),
-                  DividerOrWidget.noText(),
-                  DietMeal(
-                    title: "Snack",
-                    meals: [
-                      DietMealData(
-                        isChecked: false,
-                        imagePath: AppImages.meal,
-                        title: "Vegetable oats",
-                        subtitle: "2 pieces + 2 tbsp",
-                      ),
-                      DietMealData(
-                        isChecked: false,
-                        imagePath: AppImages.meal,
-                        title: "Vegetable oats",
-                        subtitle: "2 pieces + 2 tbsp",
-                      ),
-                    ],
-                    onViewRecipe: () {},
-                  ),
-                  DividerOrWidget.noText(),
-                  DietMeal(
-                    title: "Lunch",
-                    meals: [
-                      DietMealData(
-                        isChecked: false,
-                        imagePath: AppImages.meal,
-                        title: "Vegetable oats",
-                        subtitle: "2 pieces + 2 tbsp",
-                      ),
-                      DietMealData(
-                        isChecked: false,
-                        imagePath: AppImages.meal,
-                        title: "Vegetable oats",
-                        subtitle: "2 pieces + 2 tbsp",
-                      ),
-                    ],
-                    onViewRecipe: () {},
-                  ),
-                  DividerOrWidget.noText(),
-                  DietMeal(
-                    title: "Dinner",
-                    meals: [
-                      DietMealData(
-                        isChecked: false,
-                        imagePath: AppImages.meal,
-                        title: "Vegetable oats",
-                        subtitle: "2 pieces + 2 tbsp",
-                      ),
-                      DietMealData(
-                        isChecked: false,
-                        imagePath: AppImages.meal,
-                        title: "Vegetable oats",
-                        subtitle: "2 pieces + 2 tbsp",
-                      ),
-                    ],
-                    onViewRecipe: () {},
-                  ),
-                ],
+                  );
+                },
+                itemCount: dietMeals.length,
+                itemBuilder: (context, index) {
+                  final dietMeal = dietMeals[index];
+                  return DietMeal(
+                    title: dietMeal.title,
+                    itemsCount: dietMeal.options.length,
+                    itemBuilder: (index) {
+                      final foodItem = dietMeal.options[index];
+                      final isChecked =
+                          checkedFoodItemIds.contains(foodItem.id);
+
+                      return DietFoodItemTile(
+                        isChecked: isChecked,
+                        imageUrl: foodItem.imageUrl,
+                        title: foodItem.name,
+                        subtitle: foodItem.servingsInfo,
+                        onViewRecipe: () {
+                          log("Recipe: ${foodItem.recipeId}");
+                        },
+                        onTap: (v) {
+                          onFoodItemToggled(foodItem.id);
+                        },
+                      );
+                    },
+                  );
+                },
               ),
             ),
           ),
@@ -151,18 +125,4 @@ class _DietChartHeader extends StatelessWidget {
       ),
     );
   }
-}
-
-class DietMealData {
-  const DietMealData({
-    required this.isChecked,
-    required this.imagePath,
-    required this.title,
-    required this.subtitle,
-  });
-
-  final bool isChecked;
-  final String imagePath;
-  final String title;
-  final String subtitle;
 }
